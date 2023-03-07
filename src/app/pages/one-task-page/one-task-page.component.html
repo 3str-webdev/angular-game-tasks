@@ -1,0 +1,17 @@
+<section class="wrapper">
+  <app-tasks-navigation></app-tasks-navigation>
+  <!-- TODO: Надпись, что такой задачи не найдено если tasks === undefined -->
+
+  <article
+    class="task_info"
+    *ngIf="this.isLoading == false && this.task !== undefined"
+  >
+    <app-task-info [task]="task"></app-task-info>
+  </article>
+
+  <!-- <ng-container *ngIf="checkForShowTaskNotFound">
+    <h2 class="task_not_found tui-text_h4" align="center">
+      Такой задачи не существует❌
+    </h2>
+  </ng-container> -->
+</section>

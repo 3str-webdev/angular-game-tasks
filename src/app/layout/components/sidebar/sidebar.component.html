@@ -1,0 +1,14 @@
+<div *tuiSidebar="sidebarService.openState" class="sidebar">
+  <app-titled-section>
+    <h3 s-title class="tui-text_h6">Навигация</h3>
+    <nav s-content class="sidebar_nav">
+      <ul>
+        <li *ngFor="let route of routes" class="nav_item">
+          <a tuiLink [routerLink]="route.path" class="link">{{
+            route.title
+          }}</a>
+        </li>
+      </ul>
+    </nav>
+  </app-titled-section>
+</div>

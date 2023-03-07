@@ -1,0 +1,5 @@
+<tui-carousel [draggable]="true" [itemsCount]="3" [(index)]="index">
+  <ng-container *ngFor="let item of [1, 2, 3];">
+    <strong>{{ item }}</strong>
+  </ng-container>
+</tui-carousel>

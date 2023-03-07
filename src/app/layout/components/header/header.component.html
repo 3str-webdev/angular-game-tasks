@@ -1,0 +1,28 @@
+<section class="app_header">
+  <span class="left_side">
+    <button
+      tuiIconButton
+      type="button"
+      iconRight="tuiIconMenuLarge"
+      class="tui-space_right-3 tui-space_bottom-3"
+      title="menu"
+      size="m"
+      (click)="sidebarService.open()"
+      (tuiActiveZoneChange)="sidebarService.close()"
+    >
+      <app-sidebar></app-sidebar>
+    </button>
+    <h1 class="tui-text_h4">Игровые Задачи</h1>
+  </span>
+
+  <span class="right_side">
+    <!-- TODO: Добавить ссылку на GitHub -->
+    <a tuiLink size="m">
+      <tui-tooltip
+        content="Проект на GitHub"
+        showDelay="200"
+        hideDelay="200"
+      ></tui-tooltip>
+    </a>
+  </span>
+</section>

@@ -1,0 +1,40 @@
+.sidebar {
+  padding: 30px 15px;
+  font-size: 17px;
+  line-height: 25px;
+
+  .sidebar_nav {
+    ul {
+      li {
+        width: 100%;
+        .link {
+          position: relative;
+          display: block;
+          padding: 7px 10px;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 4px;
+            border-radius: 4px;
+            background: #6c86e2;
+            opacity: 0;
+            transition: all 0.2s;
+          }
+        }
+
+        .link:hover,
+        .link.active {
+          &::after {
+            right: 20px;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
