@@ -1,8 +1,7 @@
-import { ControlPanelPageComponent } from './pages/control-panel-page/control-panel-page.component';
-import { OneTaskPageComponent } from './pages/one-task-page/one-task-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { OneTaskPageComponent } from './pages/one-task-page/one-task-page.component';
 import { TasksListPageComponent } from './pages/tasks-list-page/tasks-list-page.component';
 
 const routes: Routes = [
@@ -17,11 +16,6 @@ const routes: Routes = [
     path: 'tasks/:taskId',
     component: OneTaskPageComponent,
     title: 'Задача',
-  },
-  {
-    path: 'control',
-    component: ControlPanelPageComponent,
-    title: 'Панель управления',
   },
 ];
 

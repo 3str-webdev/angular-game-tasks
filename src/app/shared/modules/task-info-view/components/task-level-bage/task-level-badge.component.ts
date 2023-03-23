@@ -1,7 +1,7 @@
-import { TaskLevel } from './../../../../types/tasksTypes';
-import { Component, Input } from '@angular/core';
-import { TuiStatus } from '@taiga-ui/kit';
-import { TuiSizeL } from '@taiga-ui/core';
+import {TaskLevel} from '@shared/types/tasksTypes';
+import {Component, Input} from '@angular/core';
+import {TuiStatus} from '@taiga-ui/kit';
+import {TuiSizeL} from '@taiga-ui/core';
 
 @Component({
   selector: 'app-task-level-badge',
@@ -17,7 +17,9 @@ export class TaskLevelBadgeComponent {
     Medium: 'warning',
     Hard: 'error',
   };
-  constructor() {}
+
+  constructor() {
+  }
 
   public get badgeStatus(): TuiStatus {
     return this.statusDict[this.level];

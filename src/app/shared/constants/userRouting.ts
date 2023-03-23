@@ -6,5 +6,4 @@ export interface IUserRouting {
 export const UserRouting: IUserRouting[] = [
   { path: '', title: 'Главная' },
   { path: 'tasks', title: 'Задачи' },
-  { path: 'control', title: 'Панель управления' },
 ];

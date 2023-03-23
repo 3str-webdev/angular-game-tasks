@@ -1,3 +1,4 @@
-import { colors } from './colors';
+import {colors} from './colors';
+import {taskLevelVariants} from "@shared/config/tasksConfig";
 
-export default { colors };
+export default {colors, taskLevelVariants};

@@ -1,18 +1,17 @@
-import { getOneTask } from './../../store/tasksStore/tasks.actions';
-import { getAllTasks } from '@store/tasksStore/tasks.actions';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ITask } from '@shared/types/tasksTypes';
+import { getAllTasks, getOneTask } from '@store/tasksStore/tasks.actions';
 import { Observable, retry } from 'rxjs';
 import { getAllUrl, getById } from './../url';
-import { ITask } from '@shared/types/tasksTypes';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksDataService {
-  private isLoading: boolean = false;
   public tasksList$: Observable<ITask[]>;
+  private isLoading: boolean = false;
 
   constructor(
     private http: HttpClient,

@@ -1,4 +1,4 @@
-export type ITask = Readonly<{
+export type ITask = {
   taskId: number;
   title: string;
   theme: string;
@@ -8,7 +8,7 @@ export type ITask = Readonly<{
   level: TaskLevel;
   rating: number;
   createdAt: string;
-}>;
+};
 
 export type EditableFields = Pick<
   ITask,
@@ -16,3 +16,5 @@ export type EditableFields = Pick<
 >;
 
 export type TaskLevel = 'Easy' | 'Medium' | 'Hard';
+
+

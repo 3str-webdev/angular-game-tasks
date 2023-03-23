@@ -1,5 +1,5 @@
-import { ITask } from './../../shared/types/tasksTypes';
-import { createAction, props } from '@ngrx/store';
+import {ITask} from './../../shared/types/tasksTypes';
+import {createAction, props} from '@ngrx/store';
 
 export const getAllTasks = createAction(
   '[Tasks] Get all tasks',

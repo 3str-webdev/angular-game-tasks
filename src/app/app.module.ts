@@ -1,23 +1,22 @@
-import { ControlPanelPageModule } from './pages/control-panel-page/control-panel-page.module';
-import { OneTaskPageModule } from './pages/one-task-page/one-task-page.module';
-import { tasksListReducer } from './store/tasksStore/tasks.resucer';
-import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
-import {
-  TuiRootModule,
-  TuiDialogModule,
-  TuiAlertModule,
-  TUI_SANITIZER,
-} from '@taiga-ui/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { tasksListReducer } from '@store/tasksStore/tasks.reducer';
+import {
+  TuiAlertModule,
+  TuiDialogModule,
+  TuiRootModule,
+  TUI_SANITIZER,
+} from '@taiga-ui/core';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import { OneTaskPageModule } from './pages/one-task-page/one-task-page.module';
 
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { TasksListPageModule } from './pages/tasks-list-page/tasks-list-page.module';
-import { LayoutModule } from './layout/layout.module';
-import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +25,6 @@ import { StoreModule } from '@ngrx/store';
     HomePageModule,
     TasksListPageModule,
     OneTaskPageModule,
-    ControlPanelPageModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
