@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { HomePageModule } from './pages/home-page/home-page.module';
 import { TasksListPageModule } from './pages/tasks-list-page/tasks-list-page.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,10 @@ import { TasksListPageModule } from './pages/tasks-list-page/tasks-list-page.mod
     TuiAlertModule,
     StoreModule.forRoot({ tasksList: tasksListReducer }),
   ],
-  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
+  providers: [
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
