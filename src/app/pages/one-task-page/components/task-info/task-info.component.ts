@@ -1,4 +1,4 @@
-import { ITask } from '@shared/types/tasksTypes';
+import { ITask, TaskLevel } from '@shared/types/tasksTypes';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,13 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class TaskInfoComponent {
   @Input() task!: ITask;
-  public isShowAnswer: boolean = false;
-
   constructor() {}
-
-  public toggleAnswer() {
-    this.isShowAnswer = !this.isShowAnswer;
-  }
 
   public get taskTitle(): string {
     return this.task?.title ?? '';
@@ -40,7 +34,7 @@ export class TaskInfoComponent {
     return this.task.createdAt;
   }
 
-  public get textAnswerToggleButton(): string {
-    return `${this.isShowAnswer ? 'Скрыть' : 'Показать'} ответ`;
+  public get taskLevel(): TaskLevel {
+    return this.task.level;
   }
 }

@@ -10,6 +10,8 @@ import { TaskInfoViewModule } from './../../shared/modules/task-info-view/task-i
 import { TaskInfoComponent } from './components/task-info/task-info.component';
 import { TasksNavigationComponent } from './components/tasks-navigation/tasks-navigation.component';
 import { OneTaskPageComponent } from './one-task-page.component';
+import { TaskInfoHeaderComponent } from './components/task-info-header/task-info-header.component';
+import { TaskInfoBodyComponent } from './components/task-info-body/task-info-body.component';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { OneTaskPageComponent } from './one-task-page.component';
     OneTaskPageComponent,
     TasksNavigationComponent,
     TaskInfoComponent,
+    TaskInfoHeaderComponent,
+    TaskInfoBodyComponent,
   ],
 })
 export class OneTaskPageModule {}

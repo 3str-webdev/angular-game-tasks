@@ -1,55 +1,9 @@
 <section class="wrapper">
   <section class="page_info">
-    <app-titled-section>
-      <h1 s-title class="tui-text_h3">Наш каталог📖</h1>
-      <p s-content>
-        Представляем Вашему вниманию собранный нами
-        <span select>каталог задач</span>! Эти задачи отлично дополнят Вашу
-        преподавательскую или учебную практику. Также Вы можете стать одним из
-        авторов, и люди увидят ваши задачи! Более подробно о возможности
-        сотрудничества вы можете узнать по
-        <a tuiLink routerLink="contacts">ссылке</a>
-      </p>
-    </app-titled-section>
+    <app-page-info></app-page-info>
   </section>
 
   <section class="tasks_table_section">
-    <!-- TODO: Вынести таблицу в компонент -->
-    <table tuiTable [columns]="columns" class="tasks_table tui-text_body-m">
-      <thead>
-        <tr tuiThGroup>
-          <ng-container *ngFor="let col of columnsHeaders">
-            <th tuiTh [resizable]="true">
-              <h4>{{ col }}</h4>
-            </th>
-          </ng-container>
-        </tr>
-      </thead>
-
-      <tbody
-        tuiTbody
-        *tuiLet="
-          tasksDataService.tasksList$ | async | tuiTableSort as sortedTasks
-        "
-        [data]="sortedTasks ?? []"
-      >
-        <tr *ngFor="let task of sortedTasks" tuiTr>
-          <td *tuiCell="'title'" tuiTd>
-            <a tuiLink [routerLink]="task.taskId">
-              {{ task.taskId }}. {{ task.title }}
-            </a>
-          </td>
-          <td *tuiCell="'theme'" tuiTd>
-            <p>{{ task.theme }}</p>
-          </td>
-          <td *tuiCell="'level'" tuiTd>
-            <app-task-level-badge
-              [level]="task.level"
-              size="m"
-            ></app-task-level-badge>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <app-tasks-table></app-tasks-table>
   </section>
 </section>

@@ -1,0 +1,11 @@
+<h2 s-title class="tui-text_h4 task_title">
+  {{ taskTitle }}
+  <app-task-level-badge [level]="taskLevel" size="m"></app-task-level-badge>
+</h2>
+<h4 class="tui-text_body-m task">
+  {{ taskTheme }} • Рейтинг: <span select>{{ taskRating }}</span>
+</h4>
+<p class="task_time_wrapper tui-text_body-s">
+  Добавлено на сайт:
+  <time class="task_time">{{ taskTime }}</time>
+</p>

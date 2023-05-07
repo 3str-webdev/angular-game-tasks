@@ -9,6 +9,8 @@ import { SharedDirectivesModule } from '@shared/directives/shared-directives.mod
 import { HttpClientModule } from '@angular/common/http';
 import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiLetModule } from '@taiga-ui/cdk';
+import { TasksTableComponent } from './components/tasks-table/tasks-table.component';
+import { PageInfoComponent } from './components/page-info/page-info.component';
 
 @NgModule({
   imports: [
@@ -22,6 +24,6 @@ import { TuiLetModule } from '@taiga-ui/cdk';
     TuiLetModule,
     TaskInfoViewModule,
   ],
-  declarations: [TasksListPageComponent],
+  declarations: [TasksListPageComponent, TasksTableComponent, PageInfoComponent],
 })
 export class TasksListPageModule {}

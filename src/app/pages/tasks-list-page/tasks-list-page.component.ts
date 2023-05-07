@@ -8,13 +8,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks-list-page.component.less'],
 })
 export class TasksListPageComponent implements OnInit {
-  public readonly columns: (keyof ITask)[] = ['title', 'theme', 'level'];
-  public readonly columnsHeaders: string[] = [
-    'Название задачи',
-    'Тема',
-    'Сложность',
-  ];
-
   constructor(public tasksDataService: TasksDataService) {}
 
   ngOnInit(): void {

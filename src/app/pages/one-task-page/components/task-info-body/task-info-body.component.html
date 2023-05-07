@@ -1,0 +1,14 @@
+<p class="task_text">
+  <tui-editor-socket [content]="taskText"></tui-editor-socket>
+</p>
+
+<div class="task_answer_wrapper">
+  <button tuiButton size="s" (click)="toggleAnswer()">
+    {{ textAnswerToggleButton }}
+  </button>
+  <tui-expand [expanded]="isShowAnswer">
+    <p class="task_answer">
+      <tui-editor-socket [content]="taskAnswer"></tui-editor-socket>
+    </p>
+  </tui-expand>
+</div>

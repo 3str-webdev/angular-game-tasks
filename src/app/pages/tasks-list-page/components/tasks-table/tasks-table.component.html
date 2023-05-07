@@ -1,0 +1,36 @@
+<table tuiTable [columns]="columns" class="tasks_table tui-text_body-m">
+  <thead>
+    <tr tuiThGroup>
+      <ng-container *ngFor="let col of columnsHeaders">
+        <th tuiTh [resizable]="true">
+          <h4>{{ col }}</h4>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+
+  <tbody
+    tuiTbody
+    *tuiLet="tasksList$ | async | tuiTableSort as sortedTasks"
+    [data]="sortedTasks ?? []"
+  >
+    <tr *ngFor="let task of sortedTasks" tuiTr>
+      <td *tuiCell="'title'" tuiTd>
+        <a tuiLink [routerLink]="task.taskId">
+          {{ task.taskId }}. {{ task.title }}
+        </a>
+      </td>
+
+      <td *tuiCell="'theme'" tuiTd>
+        <p>{{ task.theme }}</p>
+      </td>
+
+      <td *tuiCell="'level'" tuiTd>
+        <app-task-level-badge
+          [level]="task.level"
+          size="m"
+        ></app-task-level-badge>
+      </td>
+    </tr>
+  </tbody>
+</table>

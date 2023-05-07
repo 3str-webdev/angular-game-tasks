@@ -1,34 +1,18 @@
 <app-titled-section>
   <ng-container s-title>
-    <h2 s-title class="tui-text_h4 task_title">
-      {{ taskTitle }}
-      <app-task-level-badge
-        [level]="task.level"
-        size="m"
-      ></app-task-level-badge>
-    </h2>
-    <h4 class="tui-text_body-m task">
-      {{ taskTheme }} • Рейтинг: <span select>{{ taskRating }}</span>
-    </h4>
+    <app-task-info-header
+      [taskTitle]="taskTitle"
+      [taskTheme]="taskTheme"
+      [taskLevel]="taskLevel"
+      [taskRating]="taskRating"
+      [taskTime]="taskTime"
+    ></app-task-info-header>
   </ng-container>
 
   <section s-content class="task_body">
-    <p class="task_text">
-      <tui-editor-socket [content]="taskText"></tui-editor-socket>
-    </p>
-    <div class="task_answer_wrapper">
-      <button tuiButton size="s" (click)="toggleAnswer()">
-        {{ textAnswerToggleButton }}
-      </button>
-      <tui-expand [expanded]="isShowAnswer">
-        <p class="task_answer">
-          <tui-editor-socket [content]="taskAnswer"></tui-editor-socket>
-        </p>
-      </tui-expand>
-    </div>
-    <p class="task_time_wrapper tui-text_body-s">
-      Добавлено на сайт:
-      <time class="task_time">{{ taskTime }}</time>
-    </p>
+    <app-task-info-body
+      [taskText]="taskText"
+      [taskAnswer]="taskAnswer"
+    ></app-task-info-body>
   </section>
 </app-titled-section>
