@@ -1,4 +1,4 @@
-<app-titled-section>
+<app-titled-section *ngIf="!isLoading; else loader">
   <ng-container s-title>
     <app-task-info-header
       [taskTitle]="taskTitle"
@@ -16,3 +16,7 @@
     ></app-task-info-body>
   </section>
 </app-titled-section>
+
+<ng-template #loader>
+  <tui-loader [showLoader]="isLoading"></tui-loader>
+</ng-template>

@@ -5,7 +5,12 @@ import { SharedDirectivesModule } from '@shared/directives/shared-directives.mod
 import { TitledSectionModule } from '@shared/modules/titled-section/titled-section.module';
 import { TuiEditorSocketModule } from '@taiga-ui/addon-editor';
 import { TuiEditorModule } from '@taiga-ui/addon-editor';
-import { TuiButtonModule, TuiExpandModule } from '@taiga-ui/core';
+import {
+  TuiButtonModule,
+  TuiExpandModule,
+  TuiLoaderModule,
+  tuiLoaderOptionsProvider,
+} from '@taiga-ui/core';
 import { TaskInfoViewModule } from './../../shared/modules/task-info-view/task-info-view.module';
 import { TaskInfoComponent } from './components/task-info/task-info.component';
 import { TasksNavigationComponent } from './components/tasks-navigation/tasks-navigation.component';
@@ -24,6 +29,7 @@ import { TaskInfoBodyComponent } from './components/task-info-body/task-info-bod
     TaskInfoViewModule,
     TuiEditorModule,
     TuiEditorSocketModule,
+    TuiLoaderModule,
   ],
   declarations: [
     OneTaskPageComponent,
@@ -31,6 +37,12 @@ import { TaskInfoBodyComponent } from './components/task-info-body/task-info-bod
     TaskInfoComponent,
     TaskInfoHeaderComponent,
     TaskInfoBodyComponent,
+  ],
+  providers: [
+    tuiLoaderOptionsProvider({
+      overlay: true,
+      size: 'l',
+    }),
   ],
 })
 export class OneTaskPageModule {}

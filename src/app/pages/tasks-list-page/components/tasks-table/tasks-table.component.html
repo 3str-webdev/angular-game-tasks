@@ -1,4 +1,9 @@
-<table tuiTable [columns]="columns" class="tasks_table tui-text_body-m">
+<table
+  tuiTable
+  [columns]="columns"
+  class="tasks_table tui-text_body-m"
+  *ngIf="!isLoading; else loader"
+>
   <thead>
     <tr tuiThGroup>
       <ng-container *ngFor="let col of columnsHeaders">
@@ -34,3 +39,7 @@
     </tr>
   </tbody>
 </table>
+
+<ng-template #loader>
+  <tui-loader [showLoader]="isLoading"></tui-loader>
+</ng-template>

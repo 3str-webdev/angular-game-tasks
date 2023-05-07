@@ -16,8 +16,13 @@ export class TasksTableComponent {
     'Сложность',
   ];
   public tasksList$: Observable<ITask[]>;
+  public isLoading: boolean = false;
+
   constructor(private readonly tasksDataService: TasksDataService) {
-    this.tasksDataService.getAll();
+    this.tasksDataService.getAll({
+      onStart: () => (this.isLoading = true),
+      onFinish: () => (this.isLoading = false),
+    });
     this.tasksList$ = this.tasksDataService.tasksList$;
   }
 }
