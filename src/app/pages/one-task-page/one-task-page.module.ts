@@ -17,6 +17,7 @@ import { TasksNavigationComponent } from './components/tasks-navigation/tasks-na
 import { OneTaskPageComponent } from './one-task-page.component';
 import { TaskInfoHeaderComponent } from './components/task-info-header/task-info-header.component';
 import { TaskInfoBodyComponent } from './components/task-info-body/task-info-body.component';
+import { ErrorMessageModule } from '@shared/modules/error-message/error-message.module';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { TaskInfoBodyComponent } from './components/task-info-body/task-info-bod
     TuiEditorModule,
     TuiEditorSocketModule,
     TuiLoaderModule,
+    ErrorMessageModule,
   ],
   declarations: [
     OneTaskPageComponent,

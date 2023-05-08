@@ -1,4 +1,5 @@
-export interface RequestParams {
+export interface RequestParams<T> {
   onStart?: () => void;
-  onFinish?: () => void;
+  onFinish?: (data?: T) => void;
+  onError?: () => void;
 }

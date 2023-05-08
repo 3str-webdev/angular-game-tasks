@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ITask, TaskLevel } from '@shared/types/tasksTypes';
-import { TasksDataService } from './../../../../api/services/tasks-data.service';
+import { TaskLevel } from '@shared/types/tasksTypes';
+import { TasksDataService } from '@api/services/tasks-data.service';
+import { ITask } from '@shared/types/tasksTypes';
 
 @Component({
   selector: 'app-task-info',
@@ -12,6 +13,7 @@ export class TaskInfoComponent {
   private taskId!: number;
   private task!: ITask | undefined;
   public isLoading: boolean = false;
+  public isError: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,11 +23,13 @@ export class TaskInfoComponent {
 
     this.tasksDataService.getTaskById(this.taskId, {
       onStart: () => (this.isLoading = true),
-      onFinish: () => (this.isLoading = false),
-    });
-
-    this.tasksDataService.tasksList$.subscribe((tasks) => {
-      this.task = this.tasksDataService.findTaskById(tasks, this.taskId);
+      onFinish: (task) => {
+        this.task = task;
+        this.isLoading = false;
+      },
+      onError: () => {
+        this.isError = true;
+      },
     });
   }
 

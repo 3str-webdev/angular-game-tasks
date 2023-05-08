@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RequestParams } from '@api/types/requests';
 import { Store } from '@ngrx/store';
 import { ITask } from '@shared/types/tasksTypes';
 import { getAllTasks, getOneTask } from '@store/tasksStore/tasks.actions';
 import { Observable, retry } from 'rxjs';
 import { getAllUrl, getById } from './../url';
-import { RequestParams } from '@api/types/requests';
 
 @Injectable({
   providedIn: 'root',
@@ -24,36 +24,31 @@ export class TasksDataService {
     return tasks.find((task) => +task.taskId === taskId);
   }
 
-  public getAll(params: RequestParams = {}): void {
-    if (params.onStart) {
-      params.onStart();
-    }
+  public getAll(params: RequestParams<ITask[]> = {}): void {
+    if (params.onStart) params.onStart();
 
     this.http
       .get<ITask[]>(getAllUrl)
       .pipe(retry(2))
-      .subscribe((tasks) => {
-        this.tasksListStore.dispatch(getAllTasks({ tasksList: tasks }));
-        if (params.onFinish) {
-          params.onFinish();
-        }
+      .subscribe({
+        next: (tasks) => {
+          this.tasksListStore.dispatch(getAllTasks({ tasksList: tasks }));
+          if (params.onFinish) params.onFinish(tasks);
+        },
+        error: params.onError,
       });
   }
 
-  public getTaskById(taskId: number, params: RequestParams = {}): void {
-    if (params.onStart) {
-      params.onStart();
-    }
+  public getTaskById(taskId: number, params: RequestParams<ITask> = {}): void {
+    if (params.onStart) params.onStart();
 
-    let result: boolean = false;
+    let result: ITask | undefined = undefined;
     this.tasksList$.subscribe((tasks) => {
-      result = this.findTaskById(tasks, taskId) !== undefined;
+      result = this.findTaskById(tasks, taskId);
     });
 
     if (result) {
-      if (params.onFinish) {
-        params.onFinish();
-      }
+      if (params.onFinish) params.onFinish(result);
       return;
     }
 
@@ -64,11 +59,12 @@ export class TasksDataService {
         },
       })
       .pipe(retry(2))
-      .subscribe((task) => {
-        this.tasksListStore.dispatch(getOneTask({ task }));
-        if (params.onFinish) {
-          params.onFinish();
-        }
+      .subscribe({
+        next: (task) => {
+          this.tasksListStore.dispatch(getOneTask({ task }));
+          if (params.onFinish) params.onFinish(task);
+        },
+        error: params.onError,
       });
   }
 }

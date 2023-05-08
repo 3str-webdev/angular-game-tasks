@@ -1,4 +1,4 @@
-<app-titled-section *ngIf="!isLoading; else loader">
+<app-titled-section *ngIf="!isLoading && !isError; else alternativeView">
   <ng-container s-title>
     <app-task-info-header
       [taskTitle]="taskTitle"
@@ -17,6 +17,7 @@
   </section>
 </app-titled-section>
 
-<ng-template #loader>
-  <tui-loader [showLoader]="isLoading"></tui-loader>
+<ng-template #alternativeView>
+  <tui-loader [showLoader]="isLoading && !isError"></tui-loader>
+  <app-loading-failed-message [isError]="isError"></app-loading-failed-message>
 </ng-template>

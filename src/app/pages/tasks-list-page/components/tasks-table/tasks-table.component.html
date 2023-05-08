@@ -2,7 +2,7 @@
   tuiTable
   [columns]="columns"
   class="tasks_table tui-text_body-m"
-  *ngIf="!isLoading; else loader"
+  *ngIf="!isLoading && !isError; else alternativeView"
 >
   <thead>
     <tr tuiThGroup>
@@ -40,6 +40,10 @@
   </tbody>
 </table>
 
-<ng-template #loader>
-  <tui-loader [showLoader]="isLoading"></tui-loader>
+<ng-template #alternativeView>
+  <tui-loader
+    *ngIf="isLoading && !isError"
+    [showLoader]="isLoading"
+  ></tui-loader>
+  <app-loading-failed-message [isError]="isError"></app-loading-failed-message>
 </ng-template>

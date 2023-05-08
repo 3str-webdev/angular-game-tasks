@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TasksDataService } from '@api/services/tasks-data.service';
 import { ITask } from '@shared/types/tasksTypes';
+import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,12 +18,31 @@ export class TasksTableComponent {
   ];
   public tasksList$: Observable<ITask[]>;
   public isLoading: boolean = false;
+  public isError: boolean = false;
 
-  constructor(private readonly tasksDataService: TasksDataService) {
+  constructor(
+    private readonly tasksDataService: TasksDataService,
+    @Inject(TuiAlertService)
+    @Inject(TuiAlertService)
+    private readonly alerts: TuiAlertService
+  ) {
     this.tasksDataService.getAll({
       onStart: () => (this.isLoading = true),
       onFinish: () => (this.isLoading = false),
+      onError: () => {
+        this.isError = true;
+        this.showErrorMessage();
+      },
     });
     this.tasksList$ = this.tasksDataService.tasksList$;
+  }
+
+  showErrorMessage() {
+    this.alerts
+      .open('Ошибка при получении задач', {
+        label: 'Что-то пошло не так',
+        status: TuiNotification.Error,
+      })
+      .subscribe();
   }
 }
