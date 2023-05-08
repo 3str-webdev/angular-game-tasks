@@ -11,7 +11,7 @@ import { ITask } from '@shared/types/tasksTypes';
 })
 export class TaskInfoComponent {
   private taskId!: number;
-  private task!: ITask | undefined;
+  private task: ITask | undefined = undefined;
   public isLoading: boolean = false;
   public isError: boolean = false;
 
@@ -25,12 +25,18 @@ export class TaskInfoComponent {
       onStart: () => (this.isLoading = true),
       onFinish: (task) => {
         this.task = task;
+        console.log(task);
+
         this.isLoading = false;
       },
       onError: () => {
         this.isError = true;
       },
     });
+  }
+
+  public get isTaskFound(): boolean {
+    return !this.isLoading && !!this.task;
   }
 
   public get taskTitle(): string {

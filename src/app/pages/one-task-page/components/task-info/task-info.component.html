@@ -1,23 +1,31 @@
-<app-titled-section *ngIf="!isLoading && !isError; else alternativeView">
-  <ng-container s-title>
-    <app-task-info-header
-      [taskTitle]="taskTitle"
-      [taskTheme]="taskTheme"
-      [taskLevel]="taskLevel"
-      [taskRating]="taskRating"
-      [taskTime]="taskTime"
-    ></app-task-info-header>
-  </ng-container>
+<ng-container *ngIf="isTaskFound; else taskNotFound">
+  <app-titled-section *ngIf="!isLoading && !isError; else alternativeView">
+    <ng-container s-title>
+      <app-task-info-header
+        [taskTitle]="taskTitle"
+        [taskTheme]="taskTheme"
+        [taskLevel]="taskLevel"
+        [taskRating]="taskRating"
+        [taskTime]="taskTime"
+      ></app-task-info-header>
+    </ng-container>
 
-  <section s-content class="task_body">
-    <app-task-info-body
-      [taskText]="taskText"
-      [taskAnswer]="taskAnswer"
-    ></app-task-info-body>
-  </section>
-</app-titled-section>
+    <section s-content class="task_body">
+      <app-task-info-body
+        [taskText]="taskText"
+        [taskAnswer]="taskAnswer"
+      ></app-task-info-body>
+    </section>
+  </app-titled-section>
 
-<ng-template #alternativeView>
-  <tui-loader [showLoader]="isLoading && !isError"></tui-loader>
-  <app-loading-failed-message [isError]="isError"></app-loading-failed-message>
+  <ng-template #alternativeView>
+    <tui-loader [showLoader]="isLoading && !isError"></tui-loader>
+    <app-loading-failed-message
+      [isError]="isError"
+    ></app-loading-failed-message>
+  </ng-template>
+</ng-container>
+
+<ng-template #taskNotFound>
+  <app-task-not-found-message></app-task-not-found-message>
 </ng-template>
